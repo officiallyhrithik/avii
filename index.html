@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Piece of Magic ✨</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #ffd889;
+  --lavender: #d6b5ff;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #080b24;
+  color: #fff6e8;
+  font-family: Georgia, serif;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 100%,
+      #58366e 0%, transparent 50%),
+    linear-gradient(180deg, #080b24, #211b4a 65%, #6a4264);
+  z-index: 0;
+}
+
+#stars, #lanterns {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.5); }
+}
+
+header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 25px 15px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px 20px 70px;
+}
+
+.sun {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 45px;
+  background: radial-gradient(circle,
+    #fff5c6, #f7b95d 35%, #a55c91 70%, transparent);
+  box-shadow: 0 0 65px #f7b95d88;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  to { box-shadow: 0 0 100px #ffcf78aa; }
+}
+
+h1 {
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: normal;
+  margin: 28px 0 15px;
+  line-height: 1.08;
+  text-shadow: 0 0 30px #d6a8ff55;
+}
+
+h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.subtitle {
+  color: #e0d5f0;
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 450px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid #ffe1a7a0;
+  border-radius: 40px;
+  padding: 15px 25px;
+  color: #291c39;
+  background: linear-gradient(135deg, #fff0c9, #e6b6ff);
+  box-shadow: 0 0 30px #e6b6ff22;
+  transition: transform .3s, box-shadow .3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px #e6b6ff66;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.actions button:nth-child(2) {
+  color: white;
+  background: #ffffff0b;
+  border-color: #ffffff55;
+}
+
+.hint {
+  margin-top: 35px;
+  color: #c9b8e6;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.lantern {
+  position: absolute;
+  bottom: -100px;
+  font-size: 25px;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 0 12px #ffcf78);
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-8deg); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(12deg); opacity: 0; }
+}
+
+#letter {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #07091beF;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+}
+
+#letter.show {
+  display: flex;
+  animation: fadeIn .7s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.paper {
+  width: min(100%, 470px);
+  padding: 38px 28px;
+  color: #352342;
+  background: linear-gradient(145deg, #fff3d8, #e9d5f7);
+  border-radius: 5px 22px 5px 22px;
+  box-shadow: 0 0 70px #d9a9ff33;
+  transform: rotate(-1deg);
+}
+
+.paper h2 {
+  font-size: 30px;
+  font-weight: normal;
+  color: #7d477f;
+  margin-bottom: 22px;
+}
+
+.paper p {
+  font-size: 17px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 25px;
+  color: #7d477f;
+  font-style: italic;
+}
+
+.close {
+  margin-top: 25px;
+  background: #39254d;
+  color: white;
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #c6b4dc;
+}
+
+@media (max-width: 480px) {
+  .sun { width: 80px; height: 80px; }
+  .subtitle { font-size: 14px; }
+  .paper { padding: 28px 22px; }
+  .paper p { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="sky">
+  <div id="stars"></div>
+  <div id="lanterns"></div>
+</div>
+
+<header>✦ A story written in starlight ✦</header>
+
+<main>
+  <div class="sun">☀</div>
+
+  <h1>A Little Piece<br>of <span>Magic</span></h1>
+
+  <p class="subtitle">
+    Somewhere beneath this endless sky,<br>
+    a little surprise is waiting to be discovered.
+  </p>
+
+  <div class="actions">
+    <button id="begin">Step into the story ✨</button>
+    <button id="release">Release a lantern 🏮</button>
+  </div>
+
+  <p class="hint">MAKE A WISH · WATCH THE SKY · EXPLORE</p>
+</main>
+
+<footer>Made with a little imagination and a lot of starlight ✦</footer>
+
+<div id="letter" role="dialog" aria-modal="true"
+     aria-labelledby="letterTitle">
+  <div class="paper">
+    <h2 id="letterTitle">A little note for you 💌</h2>
+    <p id="message"></p>
+    <div class="signature">With a little magic ✨</div>
+    <button class="close" id="close">Back to the stars</button>
+  </div>
+</div>
+
+<script>
+const stars = document.getElementById("stars");
+const lanterns = document.getElementById("lanterns");
+const letter = document.getElementById("letter");
+const message = document.getElementById("message");
+
+const note = `Hey you,
+
+I wanted to make something a little different,
+something that feels like a tiny escape
+into a world full of stars and possibilities.
+
+Just like Rapunzel looking beyond her tower,
+I think the little things in life can lead
+to beautiful surprises.
+
+Your smile, your personality, and the little
+things that make you YOU deserve appreciation.
+
+No expectations, no pressure to say anything.
+I simply wanted to make you smile today.
+
+I hope life brings you wonderful adventures,
+bright days, and countless reasons to smile.
+
+Keep shining, always. 💜`;
+
+for (let i = 0; i < 130; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  star.style.animationDuration = (1 + Math.random() * 3) + "s";
+  stars.appendChild(star);
+}
+
+let count = 0;
+
+function releaseLantern() {
+  if (count >= 45) {
+    lanterns.firstElementChild?.remove();
+    count--;
+  }
+
+  const lantern = document.createElement("span");
+  lantern.className = "lantern";
+  lantern.textContent = Math.random() > .2 ? "🏮" : "✨";
+  lantern.style.left = (5 + Math.random() * 90) + "%";
+  lantern.style.animationDuration = (8 + Math.random() * 8) + "s";
+  lantern.style.fontSize = (18 + Math.random() * 20) + "px";
+
+  lantern.addEventListener("click", () => {
+    lantern.remove();
+    count--;
+    openLetter();
+  });
+
+  lantern.addEventListener("animationend", () => {
+    lantern.remove();
+    count--;
+  });
+
+  lanterns.appendChild(lantern);
+  count++;
+}
+
+function openLetter() {
+  message.textContent = note;
+  letter.classList.add("show");
+  document.getElementById("close").focus();
+}
+
+document.getElementById("begin").addEventListener("click", () => {
+  for (let i = 0; i < 12; i++) {
+    setTimeout(releaseLantern, i * 180);
+  }
+  openLetter();
+});
+
+document.getElementById("release").addEventListener("click", () => {
+  for (let i = 0; i < 5; i++) {
+    setTimeout(releaseLantern, i * 180);
+  }
+});
+
+document.getElementById("close").addEventListener("click", () => {
+  letter.classList.remove("show");
+});
+
+letter.addEventListener("click", (event) => {
+  if (event.target === letter) {
+    letter.classList.remove("show");
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    letter.classList.remove("show");
+  }
+});
+</script>
+</body>
+</html>
